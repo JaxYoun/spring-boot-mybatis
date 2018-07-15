@@ -1,0 +1,39 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: SpringBootMybatisDemo
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1:3306/yang_dev?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=false
+    hikari:
+      username: root
+      password: mysql
+      minimum-idle: 0
+      maximum-pool-size: 200
+      max-lifetime: 36000
+      connection-timeout: 36000
+      idle-timeout: 1800
+
+#设置日志级别及需要打印日志的位置，这里配置的是mapper层，目的是输出SQL
+logging:
+  level:
+    com.yang.springbootmybatis.mapper: debug
+
+#MyBatis文件及实体扫描【此处需特别注意】
+mybatis:
+  mapper-locations: classpath:com/yang/springbootmybatis/mapper/mapper/*.xml
+  type-aliases-package: com.yang.springbootmybatis.domain
+
+#分页插件配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countsql
+
+
+
+
