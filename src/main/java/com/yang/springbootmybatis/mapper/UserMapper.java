@@ -1,7 +1,5 @@
 package com.yang.springbootmybatis.mapper;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
 import com.yang.springbootmybatis.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
