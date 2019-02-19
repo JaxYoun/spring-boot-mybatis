@@ -5,10 +5,10 @@
     <update id="updateUser" parameterType="com.yang.springbootmybatis.domain.User">
         UPDATE t_user t
         SET t.`name` = #{user.name},
-            t.age = #{user.age},
-            t.is_married = #{user.isMarried}
+        t.age = #{user.age},
+        t.is_married = #{user.isMarried}
         WHERE
-            t.id = #{user.id};
+        t.id = #{user.id};
     </update>
 
 </mapper>
