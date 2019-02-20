@@ -26,4 +26,9 @@ public class RoleMenuContoller {
         return this.roleMenuMapper.getRoleWithNestedSql();
     }
 
+    @GetMapping("/getRoleWithNestedResultMap")
+    public List<Role> getRoleWithNestedResultMap() {
+        return this.roleMenuMapper.getRoleWithNestedResultMap();
+    }
+
 }

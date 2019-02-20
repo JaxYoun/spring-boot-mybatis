@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yang.springbootmybatis.mapper.CarMapper">
+
+    <resultMap id="wholeCar" type="com.yang.springbootmybatis.domain.Car">
+        <id property="id" column="carId"/>
+        <result property="name" column=""/>
+        <association property="steer" javaType="com.yang.springbootmybatis.domain.Steer">
+            <id property="id" column="steerId"/>
+            <result property="name" column="steerName"/>
+        </association>
+        <collection property="wheelSet" ofType="com.yang.springbootmybatis.domain.Wheel">
+            <id property="id" column="wheelId"/>
+            <result property="name" column="wheelName"/>
+        </collection>
+    </resultMap>
+
+    <select id="getWholeCar" resultMap="wholeCar">
+        SELECT
+            car.id AS `carId`,
+            car.`name` AS `carName`,
+            st.id AS `steerId`,
+            st.`name` AS `steerName`,
+            wh.id AS `wheelId`,
+            wh.`name` AS `wheelName`
+        FROM
+            t_car AS car
+            LEFT JOIN t_steer AS st ON car.id = st.car_id
+            LEFT JOIN t_wheel AS wh ON car.id = wh.car_id
+    </select>
+
+</mapper>

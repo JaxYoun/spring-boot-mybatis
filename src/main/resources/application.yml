@@ -24,7 +24,7 @@ logging:
 
 #MyBatis文件及实体扫描【此处需特别注意】
 mybatis:
-  mapper-locations: classpath:com/yang/springbootmybatis/mapper/mapper/*.xml
+  mapper-locations: classpath:com/yang/springbootmybatis/mapper/mapping/*.xml
   type-aliases-package: com.yang.springbootmybatis.domain
 
 #分页插件配置

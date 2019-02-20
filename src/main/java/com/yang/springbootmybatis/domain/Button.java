@@ -2,20 +2,16 @@ package com.yang.springbootmybatis.domain;
 
 import lombok.Data;
 
-import java.util.List;
-
 /**
  * @author: Yang
- * @date: 2019/2/19 23:21
+ * @date: 2019/2/20 21:43
  * @description:
  */
 @Data
-public class Menu {
+public class Button {
 
     private Integer id;
 
     private String name;
-
-    private List<Button> buttonList;
 
 }
