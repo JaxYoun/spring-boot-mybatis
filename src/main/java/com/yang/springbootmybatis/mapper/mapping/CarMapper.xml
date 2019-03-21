@@ -15,8 +15,57 @@
         </collection>
     </resultMap>
 
+    <!--1.内嵌式写法-->
     <select id="getWholeCar" resultMap="wholeCar">
         SELECT
+            car.id AS `carId`,
+            car.`name` AS `carName`,
+            st.id AS `steerId`,
+            st.`name` AS `steerName`,
+            wh.id AS `wheelId`,
+            wh.`name` AS `wheelName`
+        FROM
+            t_car AS car
+            LEFT JOIN t_steer AS st ON car.id = st.car_id
+            LEFT JOIN t_wheel AS wh ON car.id = wh.car_id
+    </select>
+
+    <!--测试无任何动态条件时阻止错误的数据写入-->
+    <select id="exceptionTest" resultType="HashMap">
+        SELECT
+            *
+        FROM
+            t_car
+        <where>
+            and exception
+        </where>
+    </select>
+
+    <!--==================分割线===================Association======================================-->
+    <resultMap id="carResultMap" type="com.yang.springbootmybatis.domain.Car">
+        <id property="id" column="carId"/>
+        <result property="name" column=""/>
+
+        <!--javaType属性表示此成员变量可以用一个类来表示-->
+        <association property="steer" javaType="com.yang.springbootmybatis.domain.Steer" resultMap="steerResultMap"/>
+
+        <!--ofType属性表示此成员变量是一个集合，用来指定元素的类型-->
+        <collection property="wheelSet" ofType="com.yang.springbootmybatis.domain.Wheel" resultMap="wheelResultMap"/>
+    </resultMap>
+
+    <resultMap id="steerResultMap" type="com.yang.springbootmybatis.domain.Steer">
+        <id property="id" column="steerId"/>
+        <result property="name" column="steerName"/>
+    </resultMap>
+
+    <resultMap id="wheelResultMap" type="com.yang.springbootmybatis.domain.Wheel">
+        <id property="id" column="wheelId"/>
+        <result property="name" column="wheelName"/>
+    </resultMap>
+
+    <!--2.分离式写法-->
+    <select id="associationNestedResultMapTest" resultMap="carResultMap">
+      SELECT
             car.id AS `carId`,
             car.`name` AS `carName`,
             st.id AS `steerId`,

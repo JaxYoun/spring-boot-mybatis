@@ -1,6 +1,7 @@
 package com.yang.springbootmybatis.rest;
 
 import com.yang.springbootmybatis.domain.Car;
+import com.yang.springbootmybatis.domain.Wheel;
 import com.yang.springbootmybatis.mapper.CarMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: Yang
@@ -24,6 +26,17 @@ public class CarController {
     @GetMapping("getWholeCar")
     public List<Car> getWholeCar() {
         return this.carMapper.getWholeCar();
+    }
+
+    @GetMapping("/exceptionTest")
+    public List<Map<String, Object>> exceptionTest() {
+        return this.carMapper.exceptionTest();
+    }
+
+    @GetMapping("/associationNestedResultMapTest")
+    public List<Car> associationNestedResultMapTest() {
+        List<Car> kk = this.carMapper.associationNestedResultMapTest();
+        return kk;
     }
 
 }
