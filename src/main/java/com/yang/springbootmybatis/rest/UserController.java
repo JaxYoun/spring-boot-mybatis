@@ -1,6 +1,7 @@
 package com.yang.springbootmybatis.rest;
 
 import com.yang.springbootmybatis.domain.User;
+import com.yang.springbootmybatis.mapper.UserMapper;
 import com.yang.springbootmybatis.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,4 +53,19 @@ public class UserController {
         return this.userService.getUserByPage(page, size);
     }
 
+    @Resource
+    private UserMapper userMapper;
+
+    @GetMapping("/procedure/{id}")
+    public User procedureTest(@PathVariable("id") Integer id) {
+        User user = new User();
+        user.setId(id);
+        this.userMapper.procedureTest(user);
+        return user;
+    }
+
+    @GetMapping("/function/{id}")
+    public Integer functionTest(@PathVariable("id") Integer id) {
+        return this.userMapper.functionTest(id);
+    }
 }

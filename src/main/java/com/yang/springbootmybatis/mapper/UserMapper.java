@@ -40,4 +40,20 @@ public interface UserMapper {
     @Select("select t.id as `id`, t.name as `name`, t.age as `age`, t.is_married as `isMarried` from t_user t where t.id > #{user.id}")
     List<User> getUserByPage(@Param("user") User user);
 
+    /**
+     * 存储过程调用测试
+     *
+     * @param po
+     * @return
+     */
+    void procedureTest(@Param("po") User po);
+
+    /**
+     * 函数调用测试
+     *
+     * @param id
+     * @return
+     */
+    Integer functionTest(@Param("id") Integer id);
+
 }

@@ -31,7 +31,7 @@
     </select>
 
     <!--测试无任何动态条件时阻止错误的数据写入-->
-    <select id="exceptionTest" resultType="HashMap">
+    <select id="exceptionTest" resultType="java.util.HashMap">
         SELECT
             *
         FROM
